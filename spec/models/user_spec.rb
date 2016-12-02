@@ -25,6 +25,17 @@ RSpec.describe User, type: :model do
     end
   end
 
+  it 'refuses to save if such email already exists in db' do
+    subject.dup.save
+    expect(subject.save).to eq false
+  end
+
+  it 'downcases domain part of the email before save' do
+    subject.email = 'BUMble@BEE.com'
+    subject.save
+    expect(subject.email).to eq 'BUMble@bee.com'
+  end
+
   it 'refuses to save if password differs from password_confirmation' do
     subject.password_confirmation = 'notRandom'
     expect(subject.save).to eq false
