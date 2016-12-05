@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  # pending "add some examples to (or delete) #{__FILE__}"
 
   subject do
     User.new(name: 'Hanna', email: 'hanna@example.com', password: 'random', password_confirmation: 'random')
@@ -44,5 +43,10 @@ RSpec.describe User, type: :model do
   it 'refuses to save if password is nil' do
     subject.password = nil
     expect(subject.save).to eq false
+  end
+
+  it 'generates confirmation token before create' do
+    subject.save
+    expect(subject.confirm_token).not_to eq nil
   end
 end

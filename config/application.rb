@@ -12,4 +12,5 @@ module Handsome
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
   end
+  Rails.application.routes.default_url_options[:host] = 'localhost'
 end

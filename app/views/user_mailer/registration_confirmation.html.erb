@@ -1,0 +1,5 @@
+Thank you for registration at <%= link_to 'Handsome', root_url %> craft shop!
+
+To confirm your email click the URL below.
+
+<%= link_to "#{confirm_email_user_url(@user.confirm_token)}", confirm_email_user_url(@user.confirm_token) %>
