@@ -1,0 +1,13 @@
+<header>
+  <nav>
+    <% if logged_in? %>
+      <%= link_to 'Profile', current_user %></li>
+      <%= link_to 'Settings', '#' %>
+      <%= link_to 'Log out', logout_path %>
+    <% else %>
+      <%= link_to 'Register', new_user_path %>
+      <%= link_to 'Log in', login_path %>
+    <% end %>
+  </nav>
+
+</header>

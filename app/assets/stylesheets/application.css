@@ -13,3 +13,14 @@
  *= require_tree .
  *= require_self
  */
+
+.flash {
+    width: 50%;
+}
+
+.error {
+    color: darkred ;
+    background-color: lightsalmon;
+    border-radius: 3px;
+    border: 1px solid darksalmon;
+}

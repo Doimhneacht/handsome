@@ -1,9 +1,32 @@
 <h1>User registration</h1>
 
-<p>Find me in app/views/users/new.html.erb</p>
+<% if @user.errors.any? %>
+    <ul class="error">
+      <% @user.errors.full_messages.each do |error| %>
+          <%= content_tag :li, error %>
+      <% end %>
+    </ul>
+<% end %>
+
 <%= form_for @user, url: {action: "create"} do |f| %>
-    <%= f.email_field :email %>
-    <%= f.password_field :password %>
-    <%= f.password_field :password_confirmation %>
-    <%= f.submit "Create" %>
+
+    <div class="form_item">
+      <%= f.label :email %>
+      <%= f.email_field :email %>
+    </div>
+
+    <div class="form_item">
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+    </div>
+
+    <div class="form_item">
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation %>
+    </div>
+
+    <div class="form_item">
+      <%= f.submit "Create" %>
+    </div>
+
 <% end %>

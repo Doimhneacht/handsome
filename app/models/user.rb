@@ -7,15 +7,24 @@ class User < ApplicationRecord
 
   has_secure_password
 
-  before_save { self.email = format(self.email) }
+  before_save { self.email = User.format(self.email) }
   before_create :generate_confirmation_token
+
+  def activate_email
+    self.email_confirmed = true
+    self.confirm_token = nil
+    save!(:validate => false)
+  end
 
   private
 
-  def format(email) # downcase domain part of the email
-    arr = email.split('@')
-    arr.last.downcase!
-    arr.join('@')
+  def self.format(email) # downcase domain part of the email
+    if !email.empty?
+      arr = email.split('@')
+      arr.last.downcase!
+      return arr.join('@')
+    end
+    ''
   end
 
   def generate_confirmation_token

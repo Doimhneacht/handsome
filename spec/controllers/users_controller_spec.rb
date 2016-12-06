@@ -25,7 +25,7 @@ RSpec.describe UsersController, type: :controller do
 
       subject do
         post :create,
-        {params: {user: {email: 'user@example.com', password: 'pwd', password_confirmation: 'pwd'} } }
+        params: {user: {email: 'user@example.com', password: 'pwd', password_confirmation: 'pwd'} }
       end
 
       it 'creates a user in the database' do
@@ -53,7 +53,7 @@ RSpec.describe UsersController, type: :controller do
 
       subject do
         post :create,
-             {params: {user: {email: '', password: 'pwd', password_confirmation: 'pwd'} } }
+             params: {user: {email: '', password: 'pwd', password_confirmation: 'pwd'} }
       end
 
       it 'does not save the new user in the database' do
@@ -69,11 +69,6 @@ RSpec.describe UsersController, type: :controller do
       it 're-renders the :new template' do
         subject
         expect(response).to render_template :new
-      end
-
-      it 'renders errors' do
-        subject
-        expect(flash[:error]).to match /\AEmail can't be blank\nEmail is invalid\z/m
       end
     end
   end
